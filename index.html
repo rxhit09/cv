@@ -165,7 +165,7 @@
             border-radius: 4px;
         }
 
-        /* Continuous Up/Down Text Shift Animation */
+        /* Animated Vertical Role Scroller */
         .hero-title-scroller {
             font-size: 1.35rem;
             font-weight: 600;
@@ -174,7 +174,7 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
 
         .word-slider-window {
@@ -199,7 +199,6 @@
             white-space: nowrap;
         }
 
-        /* Keyframes: 3 roles + 1 clone for smooth loop back to start */
         @keyframes shift-roles {
             0%, 25% {
                 transform: translateY(0);
@@ -227,7 +226,7 @@
             color: var(--text-secondary);
         }
 
-        /* Animated Profile Photo */
+        /* Profile Photo Container */
         .hero-image-wrapper {
             position: relative;
             width: 240px;
@@ -523,7 +522,7 @@
             <div class="hero-content">
                 <h1>Rohit<span>.</span></h1>
                 
-                <!-- Animated Vertical Role Scroller -->
+                <!-- Animated Role Scroller -->
                 <div class="hero-title-scroller">
                     <span>I am a</span>
                     <span class="word-slider-window">
@@ -531,7 +530,7 @@
                             <span class="word-item">Web Developer</span>
                             <span class="word-item">Data Analyst</span>
                             <span class="word-item">Interface Designer</span>
-                            <span class="word-item">Web Developer</span> <!-- cloned to create seamless loop -->
+                            <span class="word-item">Web Developer</span>
                         </span>
                     </span>
                 </div>
@@ -539,8 +538,14 @@
                 <p class="hero-subtext">Mathematics graduate from ARSD College, University of Delhi, turning numbers into interfaces and actionable insights.</p>
                 <div class="hero-location">Agra, Uttar Pradesh · open to work across India and remote</div>
             </div>
+            
             <div class="hero-image-wrapper">
-                <img src="rohit-profile.jpeg" alt="Rohit Singh" onerror="this.src='https://via.placeholder.com/240x260?text=Rohit'">
+                <!-- Handles URL encoded space characters and includes fallback to profile.jpg -->
+                <img 
+                    src="WhatsApp%20Image%202026-09-16%20at%209.24.41%20PM.jpeg" 
+                    alt="Rohit" 
+                    onerror="this.onerror=null; this.src='profile.jpg';"
+                >
             </div>
         </header>
 
@@ -647,7 +652,6 @@
 
         <!-- 04 Projects -->
         <section id="projects" class="reveal">
-            <div class="section-header">04 Projects</div>
             <div class="item-list">
                 <div class="item-card">
                     <div class="item-title">Visualising COVID-19 Data</div>
@@ -736,7 +740,7 @@
         </section>
     </div>
 
-    <!-- Performant Scroll Reveal using IntersectionObserver -->
+    <!-- Scroll Reveal JavaScript -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const observerOptions = {
@@ -757,18 +761,18 @@
         });
     </script>
 
-    <!--Start of Tawk.to Script-->
+    <!-- Start of Tawk.to Script -->
     <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
     (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/6ab3f7faab363e343f6ede9c/1k37g1b8q';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
+        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/6ab3f7faab363e343f6ede9c/1k37g1b8q';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
     })();
     </script>
-    <!--End of Tawk.to Script-->
+    <!-- End of Tawk.to Script -->
 </body>
 </html>
