@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rohit Portfolio</title>
+    <title>Rohit | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -123,7 +125,8 @@
         .reveal {
             opacity: 0;
             transform: translateY(35px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
         }
 
         .reveal.active {
@@ -162,9 +165,59 @@
             border-radius: 4px;
         }
 
-        .hero p {
-            font-size: 1.15rem;
+        /* Continuous Up/Down Text Shift Animation */
+        .hero-title-scroller {
+            font-size: 1.35rem;
+            font-weight: 600;
             color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .word-slider-window {
+            display: inline-block;
+            height: 38px;
+            line-height: 38px;
+            overflow: hidden;
+            vertical-align: middle;
+        }
+
+        .word-slider-track {
+            display: flex;
+            flex-direction: column;
+            animation: shift-roles 6s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+        }
+
+        .word-item {
+            height: 38px;
+            line-height: 38px;
+            color: #818cf8;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* Keyframes: 3 roles + 1 clone for smooth loop back to start */
+        @keyframes shift-roles {
+            0%, 25% {
+                transform: translateY(0);
+            }
+            33.33%, 58% {
+                transform: translateY(-38px);
+            }
+            66.66%, 91% {
+                transform: translateY(-76px);
+            }
+            100% {
+                transform: translateY(-114px);
+            }
+        }
+
+        .hero-subtext {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
             margin-bottom: 16px;
             max-width: 520px;
         }
@@ -204,6 +257,7 @@
             object-fit: cover;
             border-radius: 10px;
             background: var(--card-bg);
+            display: block;
         }
 
         /* Timeline Graph Bar */
@@ -434,7 +488,10 @@
                 align-items: center;
                 text-align: center;
             }
-            .hero p {
+            .hero-title-scroller {
+                justify-content: center;
+            }
+            .hero-subtext {
                 margin: 0 auto 16px auto;
             }
             .hero-image-wrapper {
@@ -455,7 +512,7 @@
             <li><a href="#experience">03 Experience</a></li>
             <li><a href="#projects">04 Projects</a></li>
             <li><a href="#education">05 Education</a></li>
-            <li><a href="#contact">07 Contact</a></li>
+            <li><a href="#contact">06 Contact</a></li>
         </ul>
         <div class="status-badge">Open to work</div>
     </nav>
@@ -465,11 +522,25 @@
         <header class="hero reveal">
             <div class="hero-content">
                 <h1>Rohit<span>.</span></h1>
-                <p>Python developer, data analyst and interface designer. Mathematics graduate, University of Delhi.</p>
+                
+                <!-- Animated Vertical Role Scroller -->
+                <div class="hero-title-scroller">
+                    <span>I am a</span>
+                    <span class="word-slider-window">
+                        <span class="word-slider-track">
+                            <span class="word-item">Web Developer</span>
+                            <span class="word-item">Data Analyst</span>
+                            <span class="word-item">Interface Designer</span>
+                            <span class="word-item">Web Developer</span> <!-- cloned to create seamless loop -->
+                        </span>
+                    </span>
+                </div>
+
+                <p class="hero-subtext">Mathematics graduate from ARSD College, University of Delhi, turning numbers into interfaces and actionable insights.</p>
                 <div class="hero-location">Agra, Uttar Pradesh · open to work across India and remote</div>
             </div>
             <div class="hero-image-wrapper">
-                <img src="WhatsApp Image 2026-09-16 at 9.24.41 PM.jpeg" alt="Rohit Singh">
+                <img src="rohit-profile.jpeg" alt="Rohit Singh" onerror="this.src='https://via.placeholder.com/240x260?text=Rohit'">
             </div>
         </header>
 
@@ -483,9 +554,9 @@
                 <circle class="timeline-node" cx="870" cy="10" r="6" />
             </svg>
             <div class="timeline-labels">
-                <span>2020 school</span>
-                <span>2025 B.Sc. maths</span>
-                <span>2026 internship</span>
+                <span>2020 School</span>
+                <span>2025 B.Sc. Maths</span>
+                <span>2026 Internship</span>
             </div>
         </div>
 
@@ -497,7 +568,7 @@
             <p class="about-text">I'm equally comfortable on the design side: wireframes, layout, Photoshop work and the HTML and CSS that turns them into something people can use. If you need someone who can take a messy spreadsheet all the way to a finished page, that's the part I enjoy most.</p>
         </section>
 
-        <!-- 02 What I work with -->
+        <!-- 02 Skills -->
         <section id="skills" class="reveal">
             <div class="section-header">02 What I work with</div>
             <div class="skills-grid">
@@ -514,7 +585,7 @@
                         <span class="skill-tag">SymPy</span>
                         <span class="skill-tag">statsmodels</span>
                         <span class="skill-tag">scikit-learn</span>
-                        <span class="skill-tag">Requests, BeautifulSoup</span>
+                        <span class="skill-tag">Requests / BeautifulSoup</span>
                         <span class="skill-tag">openpyxl</span>
                         <span class="skill-tag">Flask</span>
                     </div>
@@ -538,10 +609,10 @@
                     <h3>Analysis Workflow</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">Exploratory data analysis</span>
-                        <span class="skill-tag">Data cleaning and wrangling</span>
+                        <span class="skill-tag">Data cleaning & wrangling</span>
                         <span class="skill-tag">Data visualisation</span>
                         <span class="skill-tag">Dashboards and reporting</span>
-                        <span class="skill-tag">Excel, pivot tables</span>
+                        <span class="skill-tag">Excel & pivot tables</span>
                         <span class="skill-tag">Jupyter Notebook</span>
                         <span class="skill-tag">SQL queries</span>
                     </div>
@@ -550,13 +621,13 @@
                 <div class="skill-category">
                     <h3>Web & Design</h3>
                     <div class="skill-tags">
-                        <span class="skill-tag">HTML, CSS, JavaScript</span>
+                        <span class="skill-tag">HTML5 / CSS3</span>
+                        <span class="skill-tag">JavaScript (ES6+)</span>
                         <span class="skill-tag">Responsive layout</span>
                         <span class="skill-tag">UI/UX design</span>
                         <span class="skill-tag">Bootstrap</span>
-                        <span class="skill-tag">Git, GitHub Pages</span>
+                        <span class="skill-tag">Git / GitHub Pages</span>
                         <span class="skill-tag">Adobe Photoshop</span>
-                        <span class="skill-tag">Word, PowerPoint</span>
                     </div>
                 </div>
             </div>
@@ -569,7 +640,7 @@
                 <div class="item-card">
                     <div class="item-meta">2 months, 2026</div>
                     <div class="item-title">Data analyst intern — Pregrad, Noida</div>
-                    <div class="item-desc">Worked on live datasets end to end: cleaning and structuring raw files in pandas, running exploratory analysis to find the patterns worth reporting, and building charts and summary reports the team could act on. Presented findings back to mentors each week.</div>
+                    <div class="item-desc">Worked on live datasets end to end: cleaning and structuring raw files in pandas, running exploratory analysis to find patterns worth reporting, and building charts and summary reports for the team. Presented weekly data insights to mentors.</div>
                 </div>
             </div>
         </section>
@@ -579,38 +650,38 @@
             <div class="section-header">04 Projects</div>
             <div class="item-list">
                 <div class="item-card">
-                    <div class="item-title">Visualising COVID-19 data</div>
-                    <div class="item-desc">Tracked infection rates, mortality and vaccination progress across regions, turning daily case data into charts that show where curves actually diverge.</div>
+                    <div class="item-title">Visualising COVID-19 Data</div>
+                    <div class="item-desc">Tracked infection rates, mortality and vaccination progress across regions, turning daily case records into visual trend analyses that highlight trajectory divergences.</div>
                     <div class="tech-stack">Python · pandas · Matplotlib</div>
                 </div>
 
                 <div class="item-card">
-                    <div class="item-title">Exploring the Bitcoin cryptocurrency market</div>
-                    <div class="item-desc">Studied price movement and trading volume over time, and measured how closely other cryptocurrencies move with Bitcoin.</div>
-                    <div class="tech-stack">Python · pandas · correlation analysis</div>
+                    <div class="item-title">Exploring the Bitcoin Cryptocurrency Market</div>
+                    <div class="item-desc">Studied price volatility and trading volume trends over multi-year cycles while measuring statistical correlation with top altcoins.</div>
+                    <div class="tech-stack">Python · pandas · Correlation Analysis</div>
                 </div>
 
                 <div class="item-card">
-                    <div class="item-title">Zomato India progress report</div>
-                    <div class="item-desc">Collected restaurant and order data, then broke down customer frequency, order details and what the ordering patterns say about demand.</div>
-                    <div class="tech-stack">Python · data cleaning · reporting</div>
+                    <div class="item-title">Zomato India Progress Report</div>
+                    <div class="item-desc">Extracted restaurant metrics and order records to analyze customer retention, pricing distribution, and geographic demand patterns.</div>
+                    <div class="tech-stack">Python · Data Cleaning · Reporting</div>
                 </div>
 
                 <div class="item-card">
-                    <div class="item-title">Personal portfolio site</div>
-                    <div class="item-desc">Designed and built my own portfolio from scratch and deployed it on GitHub Pages — responsive layout, hand-written CSS, no template.</div>
+                    <div class="item-title">Personal Portfolio Site</div>
+                    <div class="item-desc">Built and deployed this custom portfolio on GitHub Pages from scratch — featuring a responsive grid layout, SVG timeline, and vanilla CSS animations.</div>
                     <div class="tech-stack">HTML · CSS · JavaScript · GitHub Pages</div>
                 </div>
 
                 <div class="item-card">
-                    <div class="item-title">Restaurant ordering interface</div>
-                    <div class="item-desc">A front end for browsing restaurants and building an order: search and filter by cuisine, a running cart, and a layout that holds up from phone to desktop.</div>
-                    <div class="tech-stack">HTML · CSS · JavaScript · UI design</div>
+                    <div class="item-title">Restaurant Ordering Interface</div>
+                    <div class="item-desc">A front-end menu experience featuring dynamic cuisine filtering, live cart calculation, and responsive layout across desktop and mobile screens.</div>
+                    <div class="tech-stack">HTML · CSS · JavaScript · UI Design</div>
                 </div>
 
                 <div class="item-card">
-                    <div class="item-title">COVID-19 data dashboard</div>
-                    <div class="item-desc">Turned the analysis above into a web page — charts that update from a data file, with filters for region and date range so the numbers can be read without opening a notebook.</div>
+                    <div class="item-title">COVID-19 Data Dashboard</div>
+                    <div class="item-desc">Converted notebook analyses into an interactive web interface with regional dropdowns and custom date-range chart updates.</div>
                     <div class="tech-stack">JavaScript · Chart rendering · Flask</div>
                 </div>
             </div>
@@ -627,42 +698,20 @@
                 </div>
                 <div class="item-card">
                     <div class="item-meta">2022</div>
-                    <div class="item-title">Intermediate, Physics, Chemistry, Mathematics</div>
+                    <div class="item-title">Senior Secondary (Class XII) — PCM</div>
                     <div class="item-desc">Jawahar Navodaya Vidyalaya, Agra</div>
                 </div>
                 <div class="item-card">
                     <div class="item-meta">2020</div>
-                    <div class="item-title">High school, Physics, Chemistry, Mathematics</div>
+                    <div class="item-title">Secondary School (Class X)</div>
                     <div class="item-desc">Jawahar Navodaya Vidyalaya, Agra</div>
                 </div>
             </div>
         </section>
 
-        <!-- 06 Also worth knowing -->
-        <section class="reveal">
-            <div class="section-header">06 Also worth knowing</div>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Certifications</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">IBM Certificate</span>
-                        <span class="skill-tag">MyGov Certificate</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Languages</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">English</span>
-                        <span class="skill-tag">Hindi</span>
-                        <span class="skill-tag">Malayalam</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 07 Get in touch -->
+        <!-- 06 Contact -->
         <section id="contact" class="reveal">
-            <div class="section-header">07 Get in touch</div>
+            <div class="section-header">06 Get in touch</div>
             <div class="contact-box">
                 <p class="about-text">If you're hiring for data or front-end work, I'd like to hear about it.</p>
                 <div class="contact-grid">
@@ -676,37 +725,50 @@
                     </div>
                     <div class="contact-item">
                         <label>LinkedIn</label>
-                        <a href="https://linkedin.com/in/rxhit099" target="_blank">linkedin.com/in/rxhit099</a>
+                        <a href="https://linkedin.com/in/rxhit099" target="_blank" rel="noopener noreferrer">linkedin.com/in/rxhit099</a>
                     </div>
                     <div class="contact-item">
-                        <label>GitHub portfolio</label>
-                        <a href="https://rxhit09.github.io/Rohit-Portfolio" target="_blank">rxhit09.github.io/Rohit-Portfolio</a>
+                        <label>GitHub</label>
+                        <a href="https://github.com/rxhit09" target="_blank" rel="noopener noreferrer">github.com/rxhit09</a>
                     </div>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- Scroll Reveal JavaScript -->
+    <!-- Performant Scroll Reveal using IntersectionObserver -->
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const reveals = document.querySelectorAll(".reveal");
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                root: null,
+                threshold: 0.15
+            };
 
-            function revealOnScroll() {
-                const windowHeight = window.innerHeight;
-                const elementVisible = 100;
-
-                reveals.forEach((element) => {
-                    const elementTop = element.getBoundingClientRect().top;
-                    if (elementTop < windowHeight - elementVisible) {
-                        element.classList.add("active");
+            const observer = new IntersectionObserver((entries, observerInstance) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        observerInstance.unobserve(entry.target);
                     }
                 });
-            }
+            }, observerOptions);
 
-            window.addEventListener("scroll", revealOnScroll);
-            revealOnScroll(); // Trigger on load
+            document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
         });
     </script>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/6ab3f7faab363e343f6ede9c/1k37g1b8q';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
 </body>
 </html>
